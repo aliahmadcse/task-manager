@@ -1,7 +1,9 @@
 <template>
     <div id="app">
         <Navbar />
-        <router-view />
+        <div id="app-container">
+            <router-view />
+        </div>
     </div>
 </template>
 
@@ -17,4 +19,15 @@ export default {
 
 <style lang="scss">
 @import '~bootstrap/scss/bootstrap';
+
+div#app-container {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    bottom: 96px;
+    width: 100%;
+    padding: 2rem;
+    background-color: $container-bg;
+    overflow: auto;
+}
 </style>

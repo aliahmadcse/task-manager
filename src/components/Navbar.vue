@@ -47,9 +47,33 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
-nav {
+header {
     .custom-bg-dark {
         background-color: #373f46 !important;
+    }
+
+    nav.navbar {
+        height: 5rem;
+    }
+
+    a.navbar-brand {
+        text-transform: uppercase;
+        letter-spacing: 3px;
+    }
+
+    li.nav-item a {
+        text-transform: uppercase;
+    }
+}
+@media screen and (max-width: 990px) {
+    div#my-nav {
+        width: 100%;
+        position: fixed;
+        top: 75px;
+        left: 0;
+        padding-left: 20px;
+        padding-bottom: 5px;
+        background-color: $nav-bg;
     }
 }
 </style>
