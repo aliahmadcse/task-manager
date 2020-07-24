@@ -4,15 +4,18 @@
         <div id="app-container">
             <router-view />
         </div>
+        <Footer />
     </div>
 </template>
 
 <script>
 import Navbar from '@/components/Navbar.vue';
+import Footer from '@/components/Footer.vue';
 export default {
     name: 'App',
     components: {
-        Navbar
+        Navbar,
+        Footer
     }
 };
 </script>
@@ -29,5 +32,18 @@ div#app-container {
     padding: 2rem;
     background-color: $container-bg;
     overflow: auto;
+}
+
+//works as a global css
+.btn-primary {
+    background-color: #32aced !important;
+}
+
+.btn-success {
+    background-color: #4fc08d !important;
+}
+
+.btn-success:hover {
+    background-color: #3da978;
 }
 </style>
