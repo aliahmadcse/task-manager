@@ -17,17 +17,17 @@
             </button>
             <div id="my-nav" class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home</a>
+                    <li class="nav-item">
+                        <router-link :to="{name:'Home'}" class="nav-link" exact>Home</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Tasks</a>
+                        <router-link :to="{name:'tasks-all'}" class="nav-link" exact>Tasks</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Register</a>
+                        <router-link :to="{name:'register'}" class="nav-link" exact>Register</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
+                        <router-link :to="{name:'login'}" class="nav-link" exact>Login</router-link>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Logout</a>
