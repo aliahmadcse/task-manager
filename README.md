@@ -1,13 +1,17 @@
-# mevn-stack
+# Task Manager
 
 ## Project setup
 ```
 npm install
 ```
+And
+```
+npm install nodemon -g
+```
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve
+npm run dev
 ```
 
 ### Compiles and minifies for production
