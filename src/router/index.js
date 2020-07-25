@@ -4,7 +4,7 @@ import Home from '../views/Home.vue';
 
 Vue.use(VueRouter);
 
-const isLoggedIn = true;
+const isLoggedIn = false;
 
 const routes = [
     {

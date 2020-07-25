@@ -33,7 +33,7 @@
                         <a class="nav-link" href="#">Logout</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Ali</a>
+                        <a class="nav-link" href="#">{{ userName}}</a>
                     </li>
                 </ul>
             </div>
@@ -43,7 +43,16 @@
 
 
 <script>
-export default {};
+export default {
+    name: 'Login',
+    computed: {
+        userName() {
+            return this.$store.state.userName
+                ? this.$store.state.userName
+                : 'user';
+        }
+    }
+};
 </script>
 
 <style lang="scss">
