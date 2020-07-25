@@ -4,7 +4,6 @@ import morgan from 'morgan';
 import bodyParser from 'body-parser';
 
 export function setEnv(app) {
-    console.log(process.env);
     if (process.env.NODE_ENV === 'production') {
         setProdEnv(app);
     } else {
