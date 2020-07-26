@@ -1,24 +1,94 @@
+import User from '../../model/userModel';
+import Task from '../../model/userModel';
+import moment from 'moment';
+
+//  find all tasks
 export function index(req, res) {
-    //  find all tasks
-    return res.status(200).json();
+    Task.find({}, (error, tasks) => {
+        if (error) {
+            return res.status(500).json();
+        }
+        return res.status(200).json({ tasks: tasks });
+    }).populate('author', 'userName', 'user');
 }
 
+// create task
 export function create(req, res) {
-    // create task
-    return res.status(201).json();
+    const id = 10;
+    User.findOne({ _id: id }, (error, user) => {
+        if (error || !user) {
+            return res.status(500).json();
+        }
+        const task = new Task(req.body.task);
+        task.author = user._id;
+        task.dueDate = moment(task.dueDate);
+
+        task.save(error => {
+            if (error) {
+                return res.status(500).json();
+            }
+            return res.status(201).json();
+        });
+    });
 }
 
+// update task
 export function update(req, res) {
-    // update task
-    return res.status(204).json();
+    const id = 10;
+    User.findOne({ _id: id }, (error, user) => {
+        if (error) {
+            return res.status(500).json();
+        }
+        if (!user) {
+            return res.status(404).json();
+        }
+
+        const task = req.body.task;
+        task.author = user._id;
+        task.dueDate = moment(task.dueDate);
+
+        Task.findByIdAndUpdate({ _id: task._id }, task, error => {
+            if (error) {
+                return res.status(500).json();
+            }
+            return res.status(204).json();
+        });
+    });
 }
 
+// delete a task
 export function remove(req, res) {
-    // delete a task
-    return res.stattus(204).json();
+    const id = 5;
+    Task.findOne({ _id: req.params.id }, (error, task) => {
+        if (error) {
+            return res.status(500).json();
+        }
+        if (!task) {
+            return res.status(404).json();
+        }
+        if (task.author._id.toString() !== id) {
+            return res
+                .status(403)
+                .json({ message: "Not allowed to delete another user's task" });
+        }
+        Task.deleteOne({ _id: req.params.id }, error => {
+            if (error) {
+                return res.status(500).json();
+            }
+            return res.status(204).json();
+        });
+    });
 }
 
+// get task by id
 export function show(req, res) {
-    // get task by id
-    return res.status(200).json();
+    Task.findOne({ _id: req.params.id }, (error, task) => {
+        if (error) {
+            return res.status(500).json();
+        }
+        if (!task) {
+            return res.status(404).json();
+        }
+        return res.status(200).json({ task: task });
+    });
 }

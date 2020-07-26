@@ -11,6 +11,7 @@
     "dependencies": {
         "body-parser": "^1.19.0",
         "core-js": "^3.6.5",
+        "moment": "^2.27.0",
         "mongoose": "^5.9.25",
         "vue": "^2.6.11",
         "vue-router": "^3.2.0",
