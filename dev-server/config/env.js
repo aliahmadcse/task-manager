@@ -13,12 +13,14 @@ export function setEnv(app) {
 
 function setDevEnv(app) {
     process.env.NODE_ENV = 'development';
+    process.env.DB_URL = 'mongodb://localhost:27017/task_manager';
     app.use(bodyParser.json());
     app.use(morgan('dev'));
     app.use(cors());
 }
 
 function setProdEnv(app) {
+    process.env.DB_URL = 'mongodb://localhost:27017/prod_db';
     app.use(bodyParser.json());
     app.use(express.static(__dirname + '/../dist'));
 }

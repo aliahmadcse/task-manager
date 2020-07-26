@@ -24,6 +24,7 @@ export default {
     }
 };
 </script>
+
 <style lang="scss" scoped>
 div#custom-home {
     height: 100%;
