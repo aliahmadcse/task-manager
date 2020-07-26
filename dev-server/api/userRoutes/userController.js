@@ -1,5 +1,5 @@
-export function index(req,res){
-    res.json({
-        message:'hello World'
+export function index(req, res) {
+    res.status(200).json({
+        message: 'hello World'
     });
 }
