@@ -4,11 +4,23 @@
         <form class="custom-form" @submit.prevent="onSubmit">
             <div class="form-group">
                 <label for="username">UserName</label>
-                <input type="text" class="form-control" id="username" placeholder="UserName..." />
+                <input
+                    type="text"
+                    v-model="userName"
+                    class="form-control"
+                    id="username"
+                    placeholder="UserName..."
+                />
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Password..." />
+                <input
+                    type="password"
+                    v-model="password"
+                    class="form-control"
+                    id="password"
+                    placeholder="Password..."
+                />
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-secondary">Submit</button>
@@ -22,9 +34,21 @@ import auth from '@/services/AuthService';
 
 export default {
     name: 'Login',
+
+    data() {
+        return {
+            userName: '',
+            password: ''
+        };
+    },
+
     methods: {
-        onSubmit() {
-            auth.login();
+        async onSubmit() {
+            const user = {
+                userName: this.userName,
+                password: this.password
+            };
+            await auth.login(user);
             this.$router.push({ name: 'Home' });
         }
     }

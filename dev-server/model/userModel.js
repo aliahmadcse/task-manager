@@ -18,6 +18,11 @@ userSchema.virtual('fullName').get(function() {
     return `${first} ${last}`;
 });
 
+//method for validating hash password
+userSchema.statics.passwordMatches = function(password, hash) {
+    return bcrypt.compareSync(password, hash);
+};
+
 // runs before saving the document
 userSchema.pre('save', function(next) {
     this.userName = this.userName.toLowerCase();

@@ -1,4 +1,5 @@
 import store from '@/store';
+import { http } from './httpService';
 
 export default {
     isLoggedIn() {
@@ -6,16 +7,26 @@ export default {
         return token != null;
     },
 
-    login() {
-        const token = {
-            username: 'ali'
-        };
-        this.setToken(token);
+    login(user) {
+        return http()
+            .post('/auth', user)
+            .then(res => {
+                if (res) {
+                    const token = {
+                        token: 'my-token'
+                    };
+                    this.setToken(token);
+                }
+            });
     },
 
     setToken(token) {
         localStorage.setItem('token', JSON.stringify(token));
         store.dispatch('authenticate');
+    },
+
+    registerUser(user) {
+        return http().post('/register', user);
     },
 
     getUserName() {

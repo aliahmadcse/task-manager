@@ -33,7 +33,7 @@
                         <a class="nav-link" href="#">Logout</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">{{ userName}}</a>
+                        <a class="nav-link" href="#">{{ userName }}</a>
                     </li>
                 </ul>
             </div>
@@ -44,7 +44,7 @@
 
 <script>
 export default {
-    name: 'Login',
+    name: 'Navbar',
     computed: {
         userName() {
             return this.$store.state.userName

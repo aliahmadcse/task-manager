@@ -7,7 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         isLoggedIn: false,
-        apiUrl: 'http://localhost:3000',
+        apiUrl: 'http://localhost:3000/api',
         userName: null,
         userId: null
     },
@@ -24,7 +24,7 @@ export default new Vuex.Store({
         }
     },
     actions: {
-        authenticate({ commit}) {
+        authenticate({ commit }) {
             commit('AUTHENTICATE');
         }
     },

@@ -15,15 +15,16 @@ export function index(req, res) {
             if (!user) {
                 return res.status(401).json();
             }
-            const passwordMatch = true;
+            const passwordMatch = User.passwordMatches(
+                req.body.password,
+                user.password
+            );
             if (!passwordMatch) {
                 return res.status(401).json();
             }
             return res.status(200).json();
         }
     );
-
-    return res.status(204).json();
 }
 
 function validateIndex(body) {
