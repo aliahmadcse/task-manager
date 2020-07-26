@@ -1,15 +1,16 @@
 import express from 'express';
 const router = express.Router();
 import * as controller from './tasksController';
+import * as auth from '../../services/authService';
 
-router.post('/task', controller.create);
+router.post('/task', auth.requireLogin, controller.create);
 
-router.get('/task', controller.index);
+router.get('/task', auth.requireLogin, controller.index);
 
-router.get('/task/:id', controller.show);
+router.get('/task/:id', auth.requireLogin, controller.show);
 
-router.put('/task', controller.update);
+router.put('/task', auth.requireLogin, controller.update);
 
-router.delete('/task', controller.remove);
+router.delete('/task', auth.requireLogin, controller.remove);
 
 export default router;

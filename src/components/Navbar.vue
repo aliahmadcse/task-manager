@@ -20,17 +20,17 @@
                     <li class="nav-item">
                         <router-link :to="{name:'Home'}" class="nav-link" exact>Home</router-link>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" v-if="$store.state.isLoggedIn">
                         <router-link :to="{name:'tasks-all'}" class="nav-link" exact>Tasks</router-link>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" v-if="!$store.state.isLoggedIn">
                         <router-link :to="{name:'register'}" class="nav-link" exact>Register</router-link>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" v-if="!$store.state.isLoggedIn">
                         <router-link :to="{name:'login'}" class="nav-link" exact>Login</router-link>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Logout</a>
+                    <li class="nav-item" v-if="$store.state.isLoggedIn">
+                        <a @click.prevent="logout" class="nav-link" href="#">Logout</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">{{ userName }}</a>
@@ -41,15 +41,25 @@
     </header>
 </template>
 
-
 <script>
+import auth from '../services/AuthService';
 export default {
     name: 'Navbar',
+
     computed: {
         userName() {
             return this.$store.state.userName
                 ? this.$store.state.userName
                 : 'user';
+        }
+    },
+
+    methods: {
+        logout() {
+            auth.logout();
+            if (this.$route.name !== 'Home') {
+                this.$router.push({ name: 'Home' });
+            }
         }
     }
 };

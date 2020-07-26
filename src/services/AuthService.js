@@ -1,5 +1,6 @@
 import store from '@/store';
 import { http } from './httpService';
+import jwt from 'jsonwebtoken';
 
 export default {
     isLoggedIn() {
@@ -12,16 +13,22 @@ export default {
             .post('/auth', user)
             .then(res => {
                 if (res) {
-                    const token = {
-                        token: 'my-token'
-                    };
-                    this.setToken(token);
+                    this.setToken(res.data.token);
                 }
             });
     },
 
+    getToken() {
+        return localStorage.getItem('token');
+    },
+
+    logout() {
+        localStorage.clear();
+        store.dispatch('authenticate');
+    },
+
     setToken(token) {
-        localStorage.setItem('token', JSON.stringify(token));
+        localStorage.setItem('token', token);
         store.dispatch('authenticate');
     },
 
@@ -29,11 +36,27 @@ export default {
         return http().post('/register', user);
     },
 
+    decodeToken() {
+        const token = this.getToken();
+        if (!token) {
+            return null;
+        }
+        return jwt.decode(token);
+    },
+
     getUserName() {
-        return 'ali';
+        const token = this.decodeToken();
+        if (!token) {
+            return null;
+        }
+        return token.user.userName;
     },
 
     getUserId() {
-        return 1;
+        const token = this.decodeToken();
+        if (!token) {
+            return null;
+        }
+        return token.user.id;
     }
 };
