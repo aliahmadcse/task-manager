@@ -32,7 +32,7 @@
                     <li class="nav-item" v-if="$store.state.isLoggedIn">
                         <a @click.prevent="logout" class="nav-link" href="#">Logout</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" v-if="$store.state.isLoggedIn">
                         <a class="nav-link" href="#">{{ userName }}</a>
                     </li>
                 </ul>

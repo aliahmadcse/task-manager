@@ -59,7 +59,7 @@ export function update(req, res) {
 
 // delete a task
 export function remove(req, res) {
-    const id = auth.getUserId();
+    const id = auth.getUserId(req);
     Task.findOne({ _id: req.params.id }, (error, task) => {
         if (error) {
             return res.status(500).json();
