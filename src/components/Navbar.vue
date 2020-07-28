@@ -2,7 +2,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark custom-bg-dark fixed-top">
             <router-link class="navbar-brand" :to="{name:'Home'}">
-                <img src="@/assets/logo.png" class="mr-2" style="max-height:25px" alt="Vue" />
+                <img src="@/assets/logo.png" style="max-height:25px" alt="Vue" />
                 Task Manager
             </router-link>
             <button
@@ -92,6 +92,11 @@ li.nav-item a {
         padding-left: 20px;
         padding-bottom: 5px;
         background-color: $nav-bg;
+    }
+}
+@media screen and (max-width: 725px) {
+    .navbar-brand {
+        font-size: 3vmax !important;
     }
 }
 </style>

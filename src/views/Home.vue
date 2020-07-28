@@ -8,18 +8,11 @@
 
 <script>
 import HelloWorld from '@/components/HelloWorld.vue';
-import { http } from '@/services/httpService';
+
 export default {
     name: 'Home',
     components: {
         HelloWorld
-    },
-    beforeCreate() {
-        http()
-            .get('/user')
-            .then(res => {
-                console.log(res.data);
-            });
     }
 };
 </script>
