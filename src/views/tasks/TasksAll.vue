@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex flex-column">
+    <div>
         <h1>Tasks</h1>
 
         <div class="mb-4">
@@ -55,28 +55,45 @@
                             exact
                         >Edit</router-link>
                         <a
-                            @click.prevent="currentTaskId = task._id"
+                            @click.prevent="showModal(task._id)"
                             class="card-link btn btn-danger"
                             href="#"
-                            v-b-modal.modal1
+                            data-toggle="modal"
+                            data-target="#deleteConfirmModal"
                         >Delete</a>
                     </div>
                 </div>
             </div>
-
-            <div>
-                <b-modal id="modal1" ref="modal" centered title="Delete Confirmation">
-                    <p class="my-4">Are you sure you would like to delete this task?</p>
-                    <div slot="modal-footer" class="w-100 text-right">
-                        <b-btn slot="md" class="mr-1" variant="danger" @click="deleteTask">Delete</b-btn>
-                        <b-btn slot="md" variant="secondary" @click="cancelModal">Cancel</b-btn>
-                    </div>
-                </b-modal>
-            </div>
         </div>
 
-        <div v-if="tasks && tasks.length === 0" class="ml-2">
+        <div v-else class="ml-2">
             <div class="alert alert-info">No tasks found.</div>
+        </div>
+
+        <!-- Modal -->
+        <div
+            class="modal fade text-dark"
+            id="deleteConfirmModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="confirmDeleteModal"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="confirmDeleteModal">Delete Confirm?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Are you sure, you want to delete this task?</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger" @click="deleteTask">Delete</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -84,6 +101,7 @@
 <script>
 import * as taskService from '../../services/TaskService';
 import moment from 'moment';
+import * as $ from 'jquery';
 
 export default {
     name: 'tasks-all',
@@ -93,6 +111,7 @@ export default {
             currentTaskId: null
         };
     },
+
     beforeRouteEnter(to, from, next) {
         taskService.getAllTasks().then(res => {
             next(vm => {
@@ -100,16 +119,19 @@ export default {
             });
         });
     },
+
     methods: {
+        showModal(taskId) {
+            this.currentTaskId = taskId;
+            $('#deleteConfirmModal').appendTo('body');
+            $('#deleteConfirmModal').modal('show');
+        },
         taskIsLate: function(date) {
             return moment(date).isBefore();
         },
-        cancelModal: function() {
-            this.$refs.modal.hide();
-            this.currentTaskId = null;
-        },
+
         deleteTask: async function() {
-            this.$refs.modal.hide();
+            $('#deleteConfirmModal').modal('hide');
             await taskService.deleteTask(this.currentTaskId);
             const index = this.tasks.findIndex(
                 task => task._id === this.currentTaskId
@@ -129,14 +151,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.modal-header h5 {
-    color: #000 !important;
-}
-.modal-body p {
-    color: #000 !important;
-}
-
 .late {
     color: #dc3545;
+}
+.modal {
+    margin-top: 100px;
 }
 </style>

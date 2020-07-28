@@ -22,6 +22,7 @@ footer#custom-footer {
     justify-content: space-around;
     align-items: center;
 }
+
 @media screen and (max-width: 725px) {
     footer#custom-footer {
         flex-direction: column;
