@@ -1,7 +1,7 @@
 <template>
     <footer id="custom-footer">
-        <span class="mr-4">&copy; 2020 Ali Ahmad</span>
-        <span class="mr-4">Privacy</span>
+        <span>&copy; 2020 Ali Ahmad</span>
+        <span>Privacy</span>
         <span>Term of Services</span>
     </footer>
 </template>
@@ -19,7 +19,12 @@ footer#custom-footer {
     bottom: 0;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+}
+@media screen and (max-width: 725px) {
+    footer#custom-footer {
+        flex-direction: column;
+    }
 }
 </style>
