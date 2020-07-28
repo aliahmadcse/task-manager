@@ -24,6 +24,15 @@ app.get('/', (req, res) => {
     }
 });
 
+// matches any route
+app.get('*', (req, res) => {
+    if (process.env.NODE_ENV !== 'production') {
+        return res.send('Running server in development mode');
+    } else {
+        return res.sendFile('index.html', { root: __dirname + '/../dist/' });
+    }
+});
+
 app.listen(port, () =>
     console.log(
         `Task manager app listening at port 3000 in ${process.env.NODE_ENV}`
