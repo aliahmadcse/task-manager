@@ -33,8 +33,8 @@ function setDevEnv(app) {
 }
 
 function setProdEnv(app) {
-  process.env.DB_URL = process.env.MONGODB_URI;
-  process.env.TOKEN_SECRET = 'my-production-secret';
+  process.env.DB_URL = 'mongodb://aliahmaddev:Aliahmad244623@ds121248.mlab.com:21248/heroku_g7qvmtt2';
+  process.env.TOKEN_SECRET = 'Aliahmad244623';
   app.use(_bodyParser.default.json());
   app.use(_express.default.static(__dirname + '/../../dist'));
 }
