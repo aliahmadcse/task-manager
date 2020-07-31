@@ -21,8 +21,8 @@ function setDevEnv(app) {
 }
 
 function setProdEnv(app) {
-    process.env.DB_URL = 'mongodb://localhost:27017/task_manager';
-    process.env.TOKEN_SECRET = 'my-production-secret';
+    process.env.DB_URL = process.env.MONGODB_URI;
+    process.env.TOKEN_SECRET = process.env.JWT_SECRET;
     app.use(bodyParser.json());
     app.use(express.static(__dirname + '/../../dist'));
 }

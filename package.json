@@ -1,13 +1,17 @@
 {
     "name": "mevn-stack",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "private": true,
+    "engines": {
+        "node": "14.2.0"
+    },
     "scripts": {
         "start": "set NODE_ENV=production&&node prod-server/index.js",
         "serve": "vue-cli-service serve",
         "build": "set NODE_ENV=production&&babel dev-server --out-dir prod-server && vue-cli-service build ",
         "lint": "vue-cli-service lint",
-        "dev": "concurrently \"set NODE_ENV=development\" \"babel dev-server --out-dir prod-server --watch\" \"nodemon prod-server/index.js\" \"npm run serve\""
+        "dev": "concurrently \"set NODE_ENV=development\" \"babel dev-server --out-dir prod-server --watch\" \"nodemon prod-server/index.js\" \"npm run serve\"",
+        "prod": "babel dev-server --out-dir prod-server"
     },
     "dependencies": {
         "axios": "^0.19.2",
