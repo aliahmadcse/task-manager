@@ -14,8 +14,7 @@ var app = (0, _express.default)();
 // setting up environment
 (0, _env.setEnv)(app); // connecting to database
 
-(0, _db.connectToDB)();
-var port = 3000; // making api routes available
+(0, _db.connectToDB)(); // making api routes available
 
 (0, _routes.registerApiRoutes)(app);
 app.get('/', function (req, res) {
@@ -37,6 +36,6 @@ app.get('*', function (req, res) {
     });
   }
 });
-app.listen(port, function () {
+app.listen(process.env.PORT, function () {
   return console.log("Task manager app listening at port 3000 in ".concat(process.env.NODE_ENV));
 });

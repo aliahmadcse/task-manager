@@ -11,8 +11,6 @@ setEnv(app);
 // connecting to database
 connectToDB();
 
-const port = 3000;
-
 // making api routes available
 registerApiRoutes(app);
 
@@ -33,7 +31,7 @@ app.get('*', (req, res) => {
     }
 });
 
-app.listen(port, () =>
+app.listen(process.env.PORT, () =>
     console.log(
         `Task manager app listening at port 3000 in ${process.env.NODE_ENV}`
     )

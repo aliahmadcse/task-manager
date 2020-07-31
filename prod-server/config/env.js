@@ -25,6 +25,7 @@ function setEnv(app) {
 
 function setDevEnv(app) {
   process.env.NODE_ENV = 'development';
+  process.env.PORT = 3000;
   process.env.DB_URL = 'mongodb://localhost:27017/task_manager';
   process.env.TOKEN_SECRET = 'my-development-secret';
   app.use(_bodyParser.default.json());
@@ -33,8 +34,8 @@ function setDevEnv(app) {
 }
 
 function setProdEnv(app) {
-  process.env.DB_URL = 'mongodb://aliahmaddev:Aliahmad244623@ds121248.mlab.com:21248/heroku_g7qvmtt2';
-  process.env.TOKEN_SECRET = 'Aliahmad244623';
+  process.env.DB_URL = process.env.MONGODB_URI;
+  process.env.TOKEN_SECRET = process.env.JWT_SECRET;
   app.use(_bodyParser.default.json());
   app.use(_express.default.static(__dirname + '/../../dist'));
 }

@@ -7,7 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         isLoggedIn: false,
-        apiUrl: `${window.location.protocol}//${window.location.hostname}:3000/api`,
+        apiUrl: `${window.location.protocol}//${window.location.hostname}:${process.env.PORT}/api`,
         userName: null,
         userId: null
     },
