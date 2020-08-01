@@ -6,7 +6,7 @@
         "node": "14.2.0"
     },
     "scripts": {
-        "start": "set NODE_ENV=production&&node prod-server/index.js",
+        "start": "set NODE_ENV=production&&node ./prod-server/index.js",
         "serve": "vue-cli-service serve",
         "build": "set NODE_ENV=production&&babel dev-server --out-dir prod-server && vue-cli-service build ",
         "lint": "vue-cli-service lint",
