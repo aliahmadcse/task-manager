@@ -6,9 +6,9 @@
         "node": "14.2.0"
     },
     "scripts": {
-        "start": "set NODE_ENV=production&&node prod-server/index.js",
+        "start": "export NODE_ENV=production&&node prod-server/index.js",
         "serve": "vue-cli-service serve",
-        "build": "set NODE_ENV=production&&vue-cli-service build",
+        "build": "export NODE_ENV=production&&vue-cli-service build",
         "lint": "vue-cli-service lint",
         "dev": "concurrently \"set NODE_ENV=development\" \"babel dev-server --out-dir prod-server --watch\" \"nodemon prod-server/index.js\" \"npm run serve\"",
         "prod": "babel dev-server --out-dir prod-server"
