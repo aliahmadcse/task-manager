@@ -19,6 +19,7 @@ export default {
     },
     beforeCreate() {
         this.$store.dispatch('authenticate');
+        console.log(process.env.NODE_ENV);
     }
 };
 </script>

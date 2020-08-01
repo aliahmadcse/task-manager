@@ -2,6 +2,8 @@
 
 var _interopRequireDefault = require("C:/Users/aliah/Desktop/mevn-stack/node_modules/@babel/runtime/helpers/interopRequireDefault");
 
+require("core-js/modules/es.array.concat");
+
 var _express = _interopRequireDefault(require("express"));
 
 var _routes = require("./routes");
@@ -37,5 +39,5 @@ app.get('*', function (req, res) {
   }
 });
 app.listen(process.env.PORT, function () {
-  return console.log("Task manager app listening at port 3000 in ".concat(process.env.NODE_ENV));
+  return console.log("Task manager app listening at port ".concat(process.env.PORT, " in ").concat(process.env.NODE_ENV));
 });

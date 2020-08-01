@@ -33,6 +33,6 @@ app.get('*', (req, res) => {
 
 app.listen(process.env.PORT, () =>
     console.log(
-        `Task manager app listening at port 3000 in ${process.env.NODE_ENV}`
+        `Task manager app listening at port ${process.env.PORT} in ${process.env.NODE_ENV}`
     )
 );
