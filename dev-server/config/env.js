@@ -23,13 +23,7 @@ function setDevEnv(app) {
 
 function setProdEnv(app) {
     process.env.DB_URL = process.env.MONGODB_URI;
-    // process.env.PORT = 27638;
-    // process.env.PORT = 3000;
-    // console.log(process.env.NODE_ENV);
-    // process.env.DB_URL =
-    //     'mongodb://aliahmaddev:Aliahmad244623@ds121248.mlab.com:21248/heroku_g7qvmtt2';
     process.env.TOKEN_SECRET = process.env.JWT_SECRET;
-    // process.env.TOKEN_SECRET = 'Aliahmad';
     app.use(bodyParser.json());
     app.use(express.static(__dirname + '/../../dist'));
 }
